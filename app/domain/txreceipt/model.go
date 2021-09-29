@@ -1,6 +1,6 @@
 package txreceipt
 
-type TxRecepit struct {
+type TxReceipt struct {
 	Hash              string `json:"hash" bson:"hash"`
 	From              string `json:"from" bson:"from"`
 	To                string `json:"to" bson:"to"`

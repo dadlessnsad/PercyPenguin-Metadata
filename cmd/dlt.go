@@ -1,4 +1,4 @@
-package functions
+package main
 
 import (
 	"os"
@@ -17,7 +17,7 @@ func connectToEthereum() *ethereum.EthereumClient {
 		log.Fatal(err)
 	}
 
-	log.Infoln("Successfully connect to ethereum client")
+	log.Infoln("Successfully connected to ethereum client")
 
 	return client
 }
