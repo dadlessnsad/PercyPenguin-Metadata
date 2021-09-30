@@ -155,7 +155,72 @@ func (g *Genome) gene() []string {
 
 	res := make([]string, 0, GENES_COUNT)
 
+	res = append(res, getHandsGenePath(gStr))
+	res = append(res, getFrontItemGenePath(gStr))
+	res = append(res, getEyewearGeneAttribute(gStr))
+	res = append(res, getBaseGenePath(gStr))
+	res = append(res, getBackgroundGenePath(gStr))
+
+	return res
+}
+
+func getRankAttribute(rank int) IntegerAttribute {
+	return IntegerAttribute{
+		TraitType:	"Rank",
+		Value:		rank,
+	}
+}
+
+func (g *Genome) attributes(configService *config.ConfigService, rarityResponse structs.RarityServiceResponse) []interface{} {
+	gStr := string(*g)
+
+	res := []interface{}{}
+	res = append(res, getBaseGeneAttribute(gStr, configService))
+	res = append(res, getHandsGeneAttribute(gStr, configService))
+	res = append(res, getFrontItemGeneAttribute(gStr, configService))
+	res = append(res, getEyewearGeneAttribute(gStr, configService))
+	res = append(res, getBackgroundGeneAttribute(gStr, configService))
+	res = append(res, getRarityScoreAttribute(rarityResponse.RarityScore))
+	res = append(res, getRankAttribute(rarityResponse.Rank))
+	
+	return res
+}
+
+func (g *Genome) Metadata(tokenId string, configService *config.ConfigService, rarityResponse structs.RarityServiceResponse) Metadata {
+	var m metadata
+	genes := g.genes()
+
+	m.Attributes = g.attributes(configService, rarityResponse)
+	m.Name = g.name(configService, tokenId)
+	m.Description = g.description(configService, tokenId)
+	m.ExternalUrl = fmt.Sprintf("%s%s", EXTERNAL_URL, tokenId)
+
+	b := strings.Builder{}
+
+	b.WriteString(PERCYPENGUIN_IMAGE_URL)//Start with base URL
+
+	for _, gene := range genes {
+		b.WriteString(gene)
+	}
+
+	b.WriteString(".jpg") // Finish with jpg
+
+	imageURL := b.String()
+
+	imageExists := imageExists(imageURL)
+
+	if !imageExists {
+		generateAndSaveImage(genes)
+	}
+
+	m.Image = imageURL
 
 }
 
-
+type Metadata struct {
+	Description	string		`json:"description"`
+	Name 		string		`json:"name"`
+	Image 		string		`json:"image"`
+	Attributes	interface	`json:"attributes"`
+	ExternalUrl	String		`json:external_url`
+}
