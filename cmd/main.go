@@ -5,9 +5,9 @@ import (
 	"os"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
+	"github.com/PercyPenguin-Metadata/app/config"
+	"github.com/PercyPenguin-Metadata/app/interface/api/handlers"
 	"github.com/joho/godotenv"
-	"github.com/polymorph-metadata/app/config"
-	"github.com/polymorph-metadata/app/interface/api/handlers"
 )
 
 func main() {

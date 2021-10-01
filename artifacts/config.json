@@ -37,7 +37,7 @@
         "Percy The Warm",
         "Percy The Chamillion",
         "Percy The Athletic",
-        "Percy The Hooligan"
+        "Percy The Hooligan",
         //Legendary
         "Percy AboMaSnow",
         "Percy Chalk",
@@ -95,6 +95,14 @@
         "Cigarette"
     ],
     "background": [
-
+        "Sinking Yellow Ice-Cap",
+        "Purple Dusk Ice-Cap",
+        "Blood sky Ice-Cap",
+        "Radiated Ice-Cap",
+        "GreenScreen Ice-Cap",
+        "The Desert",
+        "Sinking Yellow Desert",
+        "Sunny Lush Forest",
+        "Dark Lush Forest"
     ]
 }
