@@ -7,11 +7,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
-<<<<<<< HEAD
 	"github.com/PercyPenguins-Metadata/app/domain/txreceipt"
-=======
-	"github.com/PercyPenguin-Metadata/app/domain/txreceipt"
->>>>>>> aa9646b65c01e4acd716e15f1a18d6e5968dc379
 )
 
 type EthereumClient struct {
